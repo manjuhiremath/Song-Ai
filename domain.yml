@@ -1,0 +1,60 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - out_of_scope
+  - bot_functions
+  - play_song
+
+entities:
+  - song_name
+
+slots:
+  song_name:
+    type: text
+    mappings:
+      - type: from_text
+        intent: play_song
+        role: song_name
+
+
+responses:
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+  utter_bot_functions:
+    - text: "I can play songs for you."
+    - text: "I can play music for you."
+    - text: "You can ask me to play your favorite song."
+  utter_goodbye:
+    - text: "Bye."
+    - text: "Goodbye."
+    - text: "See you later."
+  utter_greet:
+    - text: "Hi! I am a joke bot."
+    - text: "Hello! What can I do for you?"
+    - text: "Hi! What's up?"
+  utter_default:
+    - text: "I couldn't understand. Can you please repeat what you said?"
+    - text: "Can you please repeat? I couldn't understand."
+    - text: "I'm sorry. I couldn't understand. Please repeat?"
+    - text: "Uhhh my bad. I couldn't understand. Please repeat?"
+  utter_play_song:
+    - custom:
+        payload: audio
+        src: action_play_song
+  utter_song_not_found:
+    - text: "I couldn't find the song."
+    - text: "The song isn't available online at the moment."
+
+actions:
+  - action_play_song
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

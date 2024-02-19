@@ -1,0 +1,83 @@
+version: "3.1"
+
+stories:
+
+- story: happy_path_greet_play_song
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - intent: play_song
+  - action: action_play_song
+  - slot_was_set:
+    - song_name: "{{ song_name }}" 
+  - action: utter_play_song
+  - checkpoint: song_played
+
+- story: happy_path_greet_play_song_goodbye
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - intent: play_song
+  - action: action_play_song
+  - slot_was_set:
+    - song_name: "{{ song_name }}"
+  - action: utter_play_song
+  - checkpoint: song_played
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: happy_path_play_song_goodbye
+  steps:
+  - action: utter_greet
+  - intent: play_song
+  - action: action_play_song
+  - slot_was_set:
+    - song_name: "{{ song_name }}"
+  - action: utter_play_song
+  - checkpoint: song_played
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Add other stories as needed...
+
+- story: sad_path_greet_goodbye
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: bot_functions
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - intent: bot_functions
+  - action: utter_bot_functions
+
+- story: story_form_play_song
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - intent: bot_functions
+  - action: utter_bot_functions
+  - intent: play_song
+  - action: action_play_song
+  - slot_was_set:
+    - song_name: "{{ song_name }}"
+  - action: utter_play_song
+  - checkpoint: song_played
+
+- story: interactive_story_1_play_song
+  steps:
+  - action: utter_greet
+  - intent: play_song
+  - action: action_play_song
+  - slot_was_set:
+    - song_name: "{{ song_name }}"
+  - action: utter_play_song
+  - checkpoint: song_played
