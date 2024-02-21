@@ -1,0 +1,232 @@
+{
+    "albums": {
+        "data": [
+            {
+                "id": "48119090",
+                "title": "Brown Rang (Slowed)",
+                "image": "https:\/\/c.saavncdn.com\/453\/Brown-Rang-Slowed-English-2023-20230908182337-50x50.webp",
+                "music": "Kaushal Shekhawat",
+                "url": "https:\/\/www.jiosaavn.com\/album\/brown-rang-slowed\/rt0d6NA-6to_",
+                "type": "album",
+                "description": "2023 \u00b7 Punjabi Album \u00b7 Kaushal Shekhawat",
+                "ctr": 110,
+                "position": 1,
+                "more_info": {
+                    "year": "2023",
+                    "is_movie": "",
+                    "language": "punjabi",
+                    "song_pids": "MLFl-AO-"
+                }
+            },
+            {
+                "id": "48401948",
+                "title": "Brown Rang",
+                "image": "https:\/\/c.saavncdn.com\/108\/Brown-Rang-English-2023-20230921030346-50x50.webp",
+                "music": "Atikur Rahman Himel, Himel, Atikur Rahman Himel &amp; HIMEL",
+                "url": "https:\/\/www.jiosaavn.com\/album\/brown-rang\/J8ZDTp3jYdE_",
+                "type": "album",
+                "description": "2023 \u00b7 English Album \u00b7 Atikur Rahman Himel, Himel, Atikur Rahman Himel &amp; HIMEL",
+                "ctr": 9,
+                "position": 2,
+                "more_info": {
+                    "year": "2023",
+                    "is_movie": "",
+                    "language": "english",
+                    "song_pids": "K2dFktRR"
+                }
+            },
+            {
+                "id": "49376492",
+                "title": "Brown Rang (LoFI Remix)",
+                "image": "https:\/\/c.saavncdn.com\/957\/Brown-Rang-LoFI-Remix-Punjabi-2023-20231031161419-50x50.webp",
+                "music": "Yo Yo Honey Singh, DJ DALAL LONDON",
+                "url": "https:\/\/www.jiosaavn.com\/album\/brown-rang-lofi-remix\/zjj,qisTea0_",
+                "type": "album",
+                "description": "2023 \u00b7 Punjabi Album \u00b7 Yo Yo Honey Singh, DJ DALAL LONDON",
+                "ctr": 28,
+                "position": 3,
+                "more_info": {
+                    "year": "2023",
+                    "is_movie": "",
+                    "language": "punjabi",
+                    "song_pids": "IxPWUF74"
+                }
+            },
+            {
+                "id": "45397646",
+                "title": "Brown Rang (Late Night Remix)",
+                "image": "https:\/\/c.saavncdn.com\/677\/Brown-Rang-Late-Night-Remix-Punjabi-2022-20230518171003-50x50.webp",
+                "music": "STYM",
+                "url": "https:\/\/www.jiosaavn.com\/album\/brown-rang-late-night-remix\/DzDDYuA6La0_",
+                "type": "album",
+                "description": "2022 \u00b7 Punjabi Album \u00b7 STYM",
+                "ctr": 8,
+                "position": 4,
+                "more_info": {
+                    "year": "2022",
+                    "is_movie": "",
+                    "language": "punjabi",
+                    "song_pids": "sIb78xoc"
+                }
+            },
+            {
+                "id": "1194906",
+                "title": "International Villager",
+                "image": "https:\/\/c.saavncdn.com\/blob\/924\/International-Villager-Punjabi-2011-20220722144441-50x50.webp",
+                "music": "Yo Yo Honey Singh",
+                "url": "https:\/\/www.jiosaavn.com\/album\/international-villager\/XEYJUpnseB4_",
+                "type": "album",
+                "description": "2011 \u00b7 Punjabi Album \u00b7 Yo Yo Honey Singh",
+                "ctr": 220,
+                "position": 5,
+                "more_info": {
+                    "year": "2011",
+                    "is_movie": "",
+                    "language": "punjabi",
+                    "song_pids": "ZYXWnh0Z, QzUVLESd, MjAOa3yv, AvxHjML7, spjL08x6, vj2tW1iy, _T9eRZms, kifVyvgk, IHxJfwlk, CsPBAwcv, G2ztPA4S, MBoCYtSd, 6-WbOVIu, -PJMo5lW"
+                }
+            }
+        ],
+        "position": 1
+    },
+    "songs": {
+        "data": [
+            {
+                "id": "vj2tW1iy",
+                "title": "Brown Rang",
+                "image": "https:\/\/c.saavncdn.com\/blob\/924\/International-Villager-Punjabi-2011-20220722144441-50x50.webp",
+                "album": "International Villager",
+                "url": "https:\/\/www.jiosaavn.com\/s\/song\/punjabi\/international-villager\/brown-rang\/BgJZRSMBXko",
+                "type": "song",
+                "description": "International Villager \u00b7 Yo Yo Honey Singh",
+                "ctr": 3916,
+                "position": 1,
+                "more_info": {
+                    "vcode": "010912501200815",
+                    "vlink": "https:\/\/jiotunepreview.jio.com\/content\/Converted\/010912501157359.mp3",
+                    "primary_artists": "Yo Yo Honey Singh",
+                    "singers": "Yo Yo Honey Singh",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "punjabi"
+                }
+            },
+            {
+                "id": "MLFl-AO-",
+                "title": "Brown Rang (Slowed)",
+                "image": "https:\/\/c.saavncdn.com\/453\/Brown-Rang-Slowed-English-2023-20230908182337-50x50.webp",
+                "album": "Brown Rang (Slowed)",
+                "url": "https:\/\/www.jiosaavn.com\/s\/song\/punjabi\/brown-rang-slowed\/brown-rang-slowed\/PSQtXVlxeB4",
+                "type": "song",
+                "description": "Brown Rang (Slowed) \u00b7 Kaushal Shekhawat",
+                "ctr": 0,
+                "position": 2,
+                "more_info": {
+                    "primary_artists": "Kaushal Shekhawat",
+                    "singers": "Kaushal Shekhawat",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "punjabi"
+                }
+            },
+            {
+                "id": "K2dFktRR",
+                "title": "Brown Rang (Slowed + Reverb)",
+                "image": "https:\/\/c.saavncdn.com\/108\/Brown-Rang-English-2023-20230921030346-50x50.webp",
+                "album": "Brown Rang",
+                "url": "https:\/\/www.jiosaavn.com\/s\/song\/english\/brown-rang\/brown-rang-slowed-%2b-reverb\/O1oPdx9EZWE",
+                "type": "song",
+                "description": "Atikur Rahman Himel, Himel \u00b7 Brown Rang",
+                "ctr": 88,
+                "position": 3,
+                "more_info": {
+                    "primary_artists": "Atikur Rahman Himel, Himel",
+                    "singers": "Atikur Rahman Himel, Himel",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "english"
+                }
+            },
+            {
+                "id": "IxPWUF74",
+                "title": "Brown Rang (LoFI Remix)",
+                "image": "https:\/\/c.saavncdn.com\/957\/Brown-Rang-LoFI-Remix-Punjabi-2023-20231031161419-50x50.webp",
+                "album": "Brown Rang (LoFI Remix)",
+                "url": "https:\/\/www.jiosaavn.com\/s\/song\/punjabi\/brown-rang-lofi-remix\/brown-rang-lofi-remix\/ORA7ZiF2AAc",
+                "type": "song",
+                "description": "Brown Rang (LoFI Remix) \u00b7 Yo Yo Honey Singh, DJ DALAL LONDON",
+                "ctr": 18,
+                "position": 4,
+                "more_info": {
+                    "vcode": "010912502151098",
+                    "vlink": "https:\/\/jiotunepreview.jio.com\/content\/Converted\/010912502107145.mp3",
+                    "primary_artists": "Yo Yo Honey Singh, DJ DALAL LONDON",
+                    "singers": "Yo Yo Honey Singh, DJ DALAL LONDON",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "punjabi"
+                }
+            },
+            {
+                "id": "sIb78xoc",
+                "title": "Brown Rang (Late Night Remix)",
+                "image": "https:\/\/c.saavncdn.com\/677\/Brown-Rang-Late-Night-Remix-Punjabi-2022-20230518171003-50x50.webp",
+                "album": "Brown Rang (Late Night Remix)",
+                "url": "https:\/\/www.jiosaavn.com\/s\/song\/punjabi\/brown-rang-late-night-remix\/brown-rang-late-night-remix\/AyEJBkxIWFA",
+                "type": "song",
+                "description": "Brown Rang (Late Night Remix) \u00b7 STYM",
+                "ctr": 0,
+                "position": 5,
+                "more_info": {
+                    "primary_artists": "STYM",
+                    "singers": "STYM",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "punjabi"
+                }
+            }
+        ],
+        "position": 2
+    },
+    "playlists": {
+        "data": [],
+        "position": 3
+    },
+    "artists": {
+        "data": [],
+        "position": 4
+    },
+    "topquery": {
+        "data": [
+            {
+                "id": "vj2tW1iy",
+                "title": "Brown Rang",
+                "image": "https:\/\/c.saavncdn.com\/blob\/924\/International-Villager-Punjabi-2011-20220722144441-50x50.webp",
+                "album": "International Villager",
+                "url": "https:\/\/www.jiosaavn.com\/s\/song\/punjabi\/international-villager\/brown-rang\/BgJZRSMBXko",
+                "type": "song",
+                "description": "Song by Yo Yo Honey Singh",
+                "ctr": 3916,
+                "position": 1,
+                "more_info": {
+                    "vcode": "010912501200815",
+                    "vlink": "https:\/\/jiotunepreview.jio.com\/content\/Converted\/010912501157359.mp3",
+                    "primary_artists": "Yo Yo Honey Singh",
+                    "singers": "Yo Yo Honey Singh",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "punjabi"
+                }
+            }
+        ],
+        "position": 0
+    },
+    "shows": {
+        "data": [],
+        "position": 5
+    },
+    "episodes": {
+        "data": [],
+        "position": 6
+    }
+}

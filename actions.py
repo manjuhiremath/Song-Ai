@@ -66,3 +66,7 @@ class ActionFetchSong(Action):
           dispatcher.utter_message("What song should I play?")
         
         return []
+
+
+# rasa run --credentials ./credentials.yml  --enable-api --model ./models --endpoints ./endpoints.yml --cors "*"
+# rasa run actions --cors "*" --debug  
