@@ -4,41 +4,38 @@ stories:
 
 - story: happy_path_greet_play_song
   steps:
-  - action: utter_greet
   - intent: greet
   - action: utter_greet
   - intent: play_song
   - action: action_play_song
   - slot_was_set:
     - song_name: "{{ song_name }}" 
-  - action: utter_play_song
-  - checkpoint: song_played
+  # - action: utter_play_song
+  # - checkpoint: song_played
 
 - story: happy_path_greet_play_song_goodbye
   steps:
-  - action: utter_greet
   - intent: greet
   - action: utter_greet
   - intent: play_song
   - action: action_play_song
   - slot_was_set:
     - song_name: "{{ song_name }}"
-  - action: utter_play_song
-  - checkpoint: song_played
-  - intent: goodbye
-  - action: utter_goodbye
+  # - action: utter_play_song
+  # - checkpoint: song_played
+  # - intent: goodbye
+  # - action: utter_goodbye
 
 - story: happy_path_play_song_goodbye
   steps:
-  - action: utter_greet
   - intent: play_song
   - action: action_play_song
   - slot_was_set:
     - song_name: "{{ song_name }}"
-  - action: utter_play_song
-  - checkpoint: song_played
-  - intent: goodbye
-  - action: utter_goodbye
+  # - action: utter_play_song
+  # - checkpoint: song_played
+  # - intent: goodbye
+  # - action: utter_goodbye
 
 # Add other stories as needed...
 
@@ -58,9 +55,14 @@ stories:
   - intent: bot_functions
   - action: utter_bot_functions
 
+- story: adastory_form_play_song
+  steps:
+  - intent: greet
+  - action: utter_greet
+  
+
 - story: story_form_play_song
   steps:
-  - action: utter_greet
   - intent: greet
   - action: utter_greet
   - intent: bot_functions
@@ -69,8 +71,8 @@ stories:
   - action: action_play_song
   - slot_was_set:
     - song_name: "{{ song_name }}"
-  - action: utter_play_song
-  - checkpoint: song_played
+  # - action: utter_play_song
+  # - checkpoint: song_played
 
 - story: interactive_story_1_play_song
   steps:
@@ -79,5 +81,122 @@ stories:
   - action: action_play_song
   - slot_was_set:
     - song_name: "{{ song_name }}"
-  - action: utter_play_song
-  - checkpoint: song_played
+  # - action: utter_play_song
+  # - checkpoint: song_played
+
+- story: interactive1_story_1_play_song
+  steps:
+  - intent: play_song
+  - action: action_play_song
+  - slot_was_set:
+    - song_name: "{{ song_name }}"
+  # - action: utter_play_song
+  
+paths:
+  smalltalk_user_angry:
+  - action: utter_smalltalk_user_angry
+  - action: action_listen
+
+  smalltalk_user_back:
+  - action: utter_smalltalk_user_back
+  - action: action_listen
+
+  smalltalk_user_bored:
+  - action: utter_smalltalk_user_bored
+  - action: action_listen
+
+  smalltalk_user_busy:
+  - action: utter_smalltalk_user_busy
+  - action: action_listen
+
+  smalltalk_user_can_not_sleep:
+  - action: utter_smalltalk_user_can_not_sleep
+  - action: action_listen
+
+  smalltalk_user_does_not_want_to_talk:
+  - action: utter_smalltalk_user_does_not_want_to_talk
+  - action: action_listen
+
+  smalltalk_user_excited:
+  - action: utter_smalltalk_user_excited
+  - action: action_listen
+
+  smalltalk_user_going_to_bed:
+  - action: utter_smalltalk_user_going_to_bed
+  - action: action_listen
+
+  smalltalk_user_good:
+  - action: utter_smalltalk_user_good
+  - action: action_listen
+
+  smalltalk_user_happy:
+  - action: utter_smalltalk_user_happy
+  - action: action_listen
+
+  smalltalk_user_has_birthday:
+  - action: utter_smalltalk_user_has_birthday
+  - action: action_listen
+
+  smalltalk_user_here:
+  - action: utter_smalltalk_user_here
+  - action: action_listen
+
+  smalltalk_user_joking:
+  - action: utter_smalltalk_user_joking
+  - action: action_listen
+
+  smalltalk_user_likes_agent:
+  - action: utter_smalltalk_user_likes_agent
+  - action: action_listen
+
+  smalltalk_user_lonely:
+  - action: utter_smalltalk_user_lonely
+  - action: action_listen
+
+  smalltalk_user_looks_like:
+  - action: utter_smalltalk_user_looks_like
+  - action: action_listen
+
+  smalltalk_user_loves_agent:
+  - action: utter_smalltalk_user_loves_agent
+  - action: action_listen
+
+  smalltalk_user_misses_agent:
+  - action: utter_smalltalk_user_misses_agent
+  - action: action_listen
+
+  smalltalk_user_needs_advice:
+  - action: utter_smalltalk_user_needs_advice
+  - action: action_listen
+
+  smalltalk_user_sad:
+  - action: utter_smalltalk_user_sad
+  - action: action_listen
+
+  smalltalk_user_sleepy:
+  - action: utter_smalltalk_user_sleepy
+  - action: action_listen
+
+  smalltalk_user_testing_agent:
+  - action: utter_smalltalk_user_testing_agent
+  - action: action_listen
+
+  smalltalk_user_tired:
+  - action: utter_smalltalk_user_tired
+  - action: action_listen
+
+  smalltalk_user_waits:
+  - action: utter_smalltalk_user_waits
+  - action: action_listen
+
+  smalltalk_user_wants_to_see_agent_again:
+  - action: utter_smalltalk_user_wants_to_see_agent_again
+  - action: action_listen
+
+  smalltalk_user_wants_to_talk:
+  - action: utter_smalltalk_user_wants_to_talk
+  - action: action_listen
+
+  smalltalk_user_will_be_back:
+  - action: utter_smalltalk_user_will_be_back
+  - action: action_listen

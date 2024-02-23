@@ -230,3 +230,58 @@
         "position": 6
     }
 }
+// lyrcics
+
+{
+    "vj2tW1iy": {
+        "id": "vj2tW1iy",
+        "type": "",
+        "song": "Brown Rang",
+        "album": "International Villager",
+        "year": "2011",
+        "music": "Yo Yo Honey Singh",
+        "music_id": "485956",
+        "primary_artists": "Yo Yo Honey Singh",
+        "primary_artists_id": "485956",
+        "featured_artists": "",
+        "featured_artists_id": "",
+        "singers": "Yo Yo Honey Singh",
+        "starring": "",
+        "image": "https:\/\/c.saavncdn.com\/blob\/924\/International-Villager-Punjabi-2011-20220722144441-150x150.jpg",
+        "label": "Speed Records India (Asia Only)",
+        "albumid": "1194906",
+        "language": "punjabi",
+        "origin": "none",
+        "play_count": 37735974,
+        "copyright_text": "\u00a9  2011 Speed Records India (Asia Only)",
+        "320kbps": "true",
+        "is_dolby_content": false,
+        "explicit_content": 0,
+        "has_lyrics": "true",
+        "lyrics_snippet": "mundey pattte ni saare mere town de",
+        "encrypted_drm_media_url": "ID2ieOjCrwdjlkMElYlzWCptgNdUpWD8QvRfUUxbmpAAh0aulfmFN+\/ZCtSiiER9GggjpNqz4JqNwAqmTWZOAo92mytrdt3FDnQW0nglPS4=",
+        "encrypted_media_url": "ID2ieOjCrwfgWvL5sXl4B1ImC5QfbsDygcjiDj3CklUc+kDCwwj\/JF2yjNRV9fdiDw+bFZShbj1FXeIGLcascxw7tS9a8Gtq",
+        "encrypted_media_path": "NMKyboFo\/FibF9Tq3QHg+DrlkkDvqWjy99C2Ihl7F52JlTEw5vEMiA2Nsgnd3207",
+        "media_preview_url": "https:\/\/preview.saavncdn.com\/924\/zlgtH2Ztg0qttLuKqzuuflLhITZQGj83_96_p.mp4",
+        "perma_url": "https:\/\/www.jiosaavn.com\/song\/brown-rang\/BgJZRSMBXko",
+        "album_url": "https:\/\/www.jiosaavn.com\/album\/international-villager\/XEYJUpnseB4_",
+        "duration": "179",
+        "rights": {
+            "code": 0,
+            "reason": "",
+            "cacheable": true,
+            "delete_cached_object": false
+        },
+        "webp": true,
+        "cache_state": "false",
+        "starred": "false",
+        "artistMap": {
+            "Yo Yo Honey Singh": "485956"
+        },
+        "release_date": "2011-11-11",
+        "vcode": "010912501200815",
+        "vlink": "https:\/\/jiotunepreview.jio.com\/content\/Converted\/010912501157359.mp3",
+        "triller_available": false,
+        "label_url": "\/label\/speed-records-india-asia-only-albums\/l5ZPfI,pWw4_"
+    }
+};
