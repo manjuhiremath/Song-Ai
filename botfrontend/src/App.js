@@ -37,12 +37,12 @@ function Chatbot() {
   };
 
   return (
-    <div className="grid justify-center backdrop-blur-xl bg-slate-900">
+    <div className="grid justify-center backdrop-blur-xl">
     <div className="ChatLogs h-90 w-45">
       {/* Display chat logs */}
       {chatLogs.map((log, index) => (
         <div key={index} className="flex flex-col mb-4">
-          <p className="mb-1">User: {log.user}</p>
+          <p className="mb-1 colo">User: {log.user}</p>
           <p className="mb-1">Bot: {log.bot}</p>
           {log.audio && <ReactAudioPlayer className="mt-1" controls autoPlay><source src={log.audio} type="audio/mp4" /></ReactAudioPlayer>}
         </div>
