@@ -1,228 +1,239 @@
 version: "3.1"
 
+
 stories:
-
-- story: happy_path_greet_play_song
+- story: happy path
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: play_song
-  - action: action_play_song
-  - slot_was_set:
-    - song_name: "{{ song_name }}" 
-  # - action: utter_play_song
-  # - checkpoint: song_played
+  - intent: mood_great
+  - action: utter_mood_happy
 
-- story: happy_path_greet_play_song_goodbye
+- story: unhappy path
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: play_song
-  - action: action_play_song
-  - slot_was_set:
-    - song_name: "{{ song_name }}"
-  # - action: utter_play_song
-  # - checkpoint: song_played
-  # - intent: goodbye
-  # - action: utter_goodbye
+  - intent: mood_unhappy
+  - action: utter_mood_unhappy
 
-- story: happy_path_play_song_goodbye
-  steps:
-  - intent: play_song
-  - action: action_play_song
-  - slot_was_set:
-    - song_name: "{{ song_name }}"
-  # - action: utter_play_song
-  # - checkpoint: song_played
-  # - intent: goodbye
-  # - action: utter_goodbye
-
-# Add other stories as needed...
-
-- story: sad_path_greet_goodbye
+- story: angry path
   steps:
   - intent: greet
   - action: utter_greet
+  - intent: mood_angry
+  - action: utter_mood_angry
+
+- story: scared path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_scared
+  - action: utter_mood_scared
+
+- story: nervous path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_nervous
+  - action: utter_mood_nervous
+
+- story: bored path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_bored
+  - action: utter_mood_bored
+
+- story: excited path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_excited
+  - action: utter_mood_excited
+
+- story: lonely path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_lonely
+  - action: utter_mood_lonely
+
+- story: tired path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_tired
+  - action: utter_mood_tired
+
+- story: say goodbye
+  steps:
   - intent: goodbye
   - action: utter_goodbye
 
-- story: bot_functions
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: bot_functions
-  - action: utter_bot_functions
-
-- story: adastory_form_play_song
-  steps:
-  - intent: greet
-  - action: utter_greet
-  
-
-- story: story_form_play_song
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: bot_functions
-  - action: utter_bot_functions
-  - intent: play_song
-  - action: action_play_song
-  - slot_was_set:
-    - song_name: "{{ song_name }}"
-  # - action: utter_play_song
-  # - checkpoint: song_played
-
-- story: interactive_story_1_play_song
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: play_song
-  - action: action_play_song
-  - slot_was_set:
-    - song_name: "{{ song_name }}"
-  # - action: utter_play_song
-  # - checkpoint: song_played
-
-- story: interactive1_story_1_play_song
+- story: play song
   steps:
   - intent: play_song
   - action: action_play_song
   - slot_was_set:
     - song_name: "{{ song_name }}"
-  # - action: utter_play_song
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: happy_path_greet_play_song
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - checkpoint: greeted
+#   - intent: play_song
+#   - action: action_play_song
+#   - slot_was_set:
+#     - song_name: "{{ song_name }}"
+#   - checkpoint: song_played
+
+# - story: sad_path_greet_goodbye
+#   steps:
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: bot_functions
+#   steps:
+#   - intent: bot_functions
+#   - action: utter_bot_functions
+
+# - story: interactive1
+#   steps:
+#   - intent: smalltalk_user_angry
+#   - action: utter_smalltalk_user_angry
+
+# - story: interactive2
+#   steps:
+#   - intent: smalltalk_user_back
+#   - action: utter_smalltalk_user_back
+
+# - story: interactive3
+#   steps:
+#   - intent: smalltalk_user_bored
+#   - action: utter_smalltalk_user_bored
   
-- story: interactive1_story_11_play_song
-  steps:
-  - intent: smalltalk_user_angry
-  - action: utter_smalltalk_user_angry
-
-- story: interactive1_story_12_play_song
-  steps:
-  - intent: smalltalk_user_back
-  - action: utter_smalltalk_user_back
-
-- story: interactive1_story_122_play_song
-  steps:
-  - intent: smalltalk_user_bored
-  - action: utter_smalltalk_user_bored
+# - story: interactive4
+#   steps:
+#   - intent: smalltalk_user_busy
+#   - action: utter_smalltalk_user_busy
   
-- story: interactive1_story_114_play_song
-  steps:
-  - intent: smalltalk_user_busy
-  - action: utter_smalltalk_user_busy
+# - story: interactive5
+#   steps:
+#   - intent: smalltalk_user_can_not_sleep
+#   - action: utter_smalltalk_user_can_not_sleep
+
+# - story: interactive6
+#   steps:
+#   - intent: smalltalk_user_does_not_want_to_talk
+#   - action: utter_smalltalk_user_does_not_want_to_talk
+
+# - story: interactive7
+#   steps:
+#   - intent: smalltalk_user_excited
+#   - action: utter_smalltalk_user_excited
+
+# - story: interactive8
+#   steps:
+#   - intent: smalltalk_user_going_to_bed
+#   - action: utter_smalltalk_user_going_to_bed
+
+# - story: interactive9
+#   steps:
+#   - intent: smalltalk_user_good
+#   - action: utter_smalltalk_user_good
+
+# - story: interactive10
+#   steps:
+#   - intent: smalltalk_user_happy
+#   - action: utter_smalltalk_user_happy
+
+# - story: interactive11
+#   steps:
+#   - intent: smalltalk_user_has_birthday
+#   - action: utter_smalltalk_user_has_birthday
+
+# - story: interactive12
+#   steps:
+#   - intent: smalltalk_user_here
+#   - action: utter_smalltalk_user_here
+
+# - story: interactive13
+#   steps:
+#   - intent: smalltalk_user_joking
+#   - action: utter_smalltalk_user_joking
+
+# - story: interactive14
+#   steps:
+#   - intent: smalltalk_user_likes_agent
+#   - action: utter_smalltalk_user_likes_agent
+
+# - story: interactive15
+#   steps:
+#   - intent: smalltalk_user_lonely
+#   - action: utter_smalltalk_user_lonely
+
+# - story: interactive16
+#   steps:
+#   - intent: smalltalk_user_looks_like
+#   - action: utter_smalltalk_user_looks_like
+
+# - story: interactive17
+#   steps:
+#   - intent: smalltalk_user_loves_agent
+#   - action: utter_smalltalk_user_loves_agent
+
+# - story: interactive18
+#   steps:
+#   - intent: smalltalk_user_misses_agent
+#   - action: utter_smalltalk_user_misses_agent
+
+# - story: interactive19
+#   steps:
+#   - intent: smalltalk_user_needs_advice
+#   - action: utter_smalltalk_user_needs_advice
+
+# - story: interactive20
+#   steps:
+#   - intent: smalltalk_user_sad
+#   - action: utter_smalltalk_user_sad
+
+# - story: interactive21
+#   steps:
+#   - intent: smalltalk_user_sleepy
+#   - action: utter_smalltalk_user_sleepy
+
+# - story: interactive22
+#   steps:
+#   - intent: smalltalk_user_testing_agent
+#   - action: utter_smalltalk_user_testing_agent
+
+# - story: interactive23
+#   steps:
+#   - intent: smalltalk_user_tired
+#   - action: utter_smalltalk_user_tired
   
-- story: interactive1_story_115_play_song
-  steps:
-  - intent: smalltalk_user_can_not_sleep
-  - action: utter_smalltalk_user_can_not_sleep
-
-- story: interactive1_story_116_play_song
-  steps:
-  - intent: smalltalk_user_does_not_want_to_talk
-  - action: utter_smalltalk_user_does_not_want_to_talk
-
-- story: interactive1_story_117_play_song
-  steps:
-  - intent: smalltalk_user_excited
-  - action: utter_smalltalk_user_excited
-
-- story: interactive1_story_118_play_song
-  steps:
-  - intent: smalltalk_user_going_to_bed
-  - action: utter_smalltalk_user_going_to_bed
-
-- story: interactive1_story_119_play_song
-  steps:
-  - intent: smalltalk_user_good
-  - action: utter_smalltalk_user_good
-
-- story: interactive1_story1_11_play_song
-  steps:
-  - intent: smalltalk_user_happy
-  - action: utter_smalltalk_user_happy
-
-- story: interactive1_story2_11_play_song
-  steps:
-  - intent: smalltalk_user_has_birthday
-  - action: utter_smalltalk_user_has_birthday
-
-- story: interactive1_story3_11_play_song
-  steps:
-  - intent: smalltalk_user_here
-  - action: utter_smalltalk_user_here
-
-- story: interactive1_story4_11_play_song
-  steps:
-  - intent: smalltalk_user_joking
-  - action: utter_smalltalk_user_joking
-
-- story: interactive1_story5_11_play_song
-  steps:
-  - intent: smalltalk_user_likes_agent
-  - action: utter_smalltalk_user_likes_agent
-
-- story: interactive1_story6_11_play_song
-  steps:
-  - intent: smalltalk_user_lonely
-  - action: utter_smalltalk_user_lonely
-
-- story: interactive1_story7_11_play_song
-  steps:
-  - intent: smalltalk_user_looks_like
-  - action: utter_smalltalk_user_looks_like
-
-- story: interactive1_story8_11_play_song
-  steps:
-  - intent: smalltalk_user_loves_agent
-  - action: utter_smalltalk_user_loves_agent
-
-- story: interactive1_story_911_play_song
-  steps:
-  - intent: smalltalk_user_misses_agent
-  - action: utter_smalltalk_user_misses_agent
-
-- story: interactive1_story_191_play_song
-  steps:
-  - intent: smalltalk_user_needs_advice
-  - action: utter_smalltalk_user_needs_advice
-
-- story: interactive1_story_171_play_song
-  steps:
-  - intent: smalltalk_user_sad
-  - action: utter_smalltalk_user_sad
-
-- story: interactive12_story_11_play_song
-  steps:
-  - intent: smalltalk_user_sleepy
-  - action: utter_smalltalk_user_sleepy
-
-- story: interactive13_story_11_play_song
-  steps:
-  - intent: smalltalk_user_testing_agent
-  - action: utter_smalltalk_user_testing_agent
-
-- story: interactive14_story_11_play_song
-  steps:
-  - intent: smalltalk_user_tired
-  - action: utter_smalltalk_user_tired
-  
-- story: interactive15_story_11_play_song
-  steps:
-  - intent: smalltalk_user_waits
-  - action: utter_smalltalk_user_waits
+# - story: interactive24
+#   steps:
+#   - intent: smalltalk_user_waits
+#   - action: utter_smalltalk_user_waits
  
-- story: interactive16_story_11_play_song
-  steps:
-  - intent: smalltalk_user_wants_to_see_agent_again
-  - action: utter_smalltalk_user_wants_to_see_agent_again
+# - story: interactive25
+#   steps:
+#   - intent: smalltalk_user_wants_to_see_agent_again
+#   - action: utter_smalltalk_user_wants_to_see_agent_again
  
-- story: interactive17_story_11_play_song
-  steps:
-  - intent: smalltalk_user_wants_to_talk
-  - action: utter_smalltalk_user_wants_to_talk
+# - story: interactive26
+#   steps:
+#   - intent: smalltalk_user_wants_to_talk
+#   - action: utter_smalltalk_user_wants_to_talk
 
-- story: interactive18_story_11_play_song
-  steps:
-  - intent: smalltalk_user_will_be_back
-  - action: utter_smalltalk_user_will_be_back
-
+# - story: interactive27
+#   steps:
+#   - intent: smalltalk_user_will_be_back
+#   - action: utter_smalltalk_user_will_be_back

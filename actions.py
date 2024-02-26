@@ -70,3 +70,4 @@ class ActionFetchSong(Action):
 
 # rasa run --credentials ./credentials.yml  --enable-api --model ./models --endpoints ./endpoints.yml --cors "*"
 # rasa run actions --cors "*" --debug  
+# rasa run -vv --model models --enable-api --cors "*"

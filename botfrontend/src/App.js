@@ -1,28 +1,33 @@
 import './App.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 
 function Chatbot() {
   const [responseMsg, setResponseMsg] = useState("");
   const [userInput, setUserInput] = useState("");
-  // const [getSong, setSong] = useState("");
   const [chatLogs, setChatLogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading state
+
+  const chatContainerRef = useRef(null);
 
   const sendMessage = async (message) => {
+    setIsLoading(true); // Set loading state to true when sending message
     try {
       const response = await axios.post(`http://localhost:5005/webhooks/rest/webhook`, {
         sender: 'user',
         message: message
       });
 
-      const botMessages = response.data.map(msg => msg.text).join('\n'); // Extract text from bot messages
-      const audioUrl = response.data[0]?.custom?.payload === "audio" ? response.data[0].custom.url : null; // Check if the first message is audio
+      const botMessages = response.data.map(msg => msg.text).join('\n');
+      const audioUrl = response.data[0]?.custom?.payload === "audio" ? response.data[0].custom.url : null;
       setResponseMsg(botMessages);
 
       setChatLogs(prevLogs => [...prevLogs, { user: message, bot: botMessages, audio: audioUrl }]);
     } catch (error) {
       console.error('Error sending message to Rasa:', error);
+    } finally {
+      setIsLoading(false); // Set loading state to false when message is sent
     }
   };
 
@@ -36,14 +41,26 @@ function Chatbot() {
     setUserInput("");
   };
 
+  // Function to scroll to the bottom of the chat container
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
+  // Scroll to bottom when chat logs change
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatLogs]);
+
   return (
     <>
     {/* <div style={{ position: 'fixed', left: '50%', transform: 'translateX(-50%)', width: '80%', zIndex: 999 }} */}
 {/* > */}
-    <div className="flex flex-col flex-auto h-full p-6 border-sky-500">
-      <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
+    <div className="flex flex-col flex-auto h-full p-10 mb-8 border-sky-500">
+      <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-500 h-full p-8">
         {/* Display chat logs */}
-        <div class="flex flex-col h-full overflow-x-auto mb-4">
+        <div ref={chatContainerRef} class="flex flex-col h-full scroll-smooth md:scroll-auto mb-4">
           {chatLogs.map((log, index) => (
             <div class="flex flex-col h-full" key={index}>
               <div class="grid grid-cols-12 gap-y-2">
@@ -71,9 +88,9 @@ function Chatbot() {
                     <div
                       class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
                     >
-                      <div>{log.bot}</div>
-                      <div>{log.title}</div>
-                      {log.audio && <ReactAudioPlayer className="mt-1" controls ><source src={log.audio} type="audio/mp4" /></ReactAudioPlayer>}
+                       {isLoading ? <div>Loading...</div> : <div>{log.bot}</div>}
+                      {/* <div>{log.bot}</div> */}
+                      {log.audio && <ReactAudioPlayer className="mt-1" controls ><source src={log.audio} text={log.title} type="audio/mp4" /></ReactAudioPlayer>}
                     </div>
                   </div>
                 </div>
@@ -82,6 +99,9 @@ function Chatbot() {
           ))}
         </div>
         {/* </div> */}
+
+
+        <form onSubmit={handleSubmit}>
         <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '80%', zIndex: 999 }}
 >
           <div
@@ -162,7 +182,9 @@ function Chatbot() {
             </div>
           </div>
         </div>
+        </form>
       </div>
+      
     </div>
   </>
   
