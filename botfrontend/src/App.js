@@ -37,39 +37,135 @@ function Chatbot() {
   };
 
   return (
-    <div className="grid justify-center backdrop-blur-xl">
-    <div className="ChatLogs h-90 w-45">
-      {/* Display chat logs */}
-      {chatLogs.map((log, index) => (
-        <div key={index} className="flex flex-col mb-4">
-          <p className="mb-1 colo">User: {log.user}</p>
-          <p className="mb-1">Bot: {log.bot}</p>
-          {log.audio && <ReactAudioPlayer className="mt-1" controls autoPlay><source src={log.audio} type="audio/mp4" /></ReactAudioPlayer>}
+    <>
+    {/* <div style={{ position: 'fixed', left: '50%', transform: 'translateX(-50%)', width: '80%', zIndex: 999 }} */}
+{/* > */}
+    <div className="flex flex-col flex-auto h-full p-6 border-sky-500">
+      <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
+        {/* Display chat logs */}
+        <div class="flex flex-col h-full overflow-x-auto mb-4">
+          {chatLogs.map((log, index) => (
+            <div class="flex flex-col h-full" key={index}>
+              <div class="grid grid-cols-12 gap-y-2">
+                <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                  <div class="flex items-center justify-start flex-row-reverse">
+                    <div
+                      class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                    >
+                      User
+                    </div>
+                    <div
+                      class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                    >
+                      <div>{log.user}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                  <div class="flex flex-row items-center">
+                    <div
+                      class="flex items-center justify-center h-10 w-10 rounded-full bg-violet-600 flex-shrink-0"
+                    >
+                      Bot
+                    </div>
+                    <div
+                      class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                    >
+                      <div>{log.bot}</div>
+                      <div>{log.title}</div>
+                      {log.audio && <ReactAudioPlayer className="mt-1" controls ><source src={log.audio} type="audio/mp4" /></ReactAudioPlayer>}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+        {/* </div> */}
+        <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '80%', zIndex: 999 }}
+>
+          <div
+            class="flex flex-row items-center h-16 rounded-xl bg-slate-400 w-full px-4"
+          >
+            <div>
+              <button
+                class="flex items-center justify-center text-gray-400 hover:text-gray-600"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <div class="flex-grow ml-4">
+              <div class="relative w-full">
+                <input
+                  type="text"
+                  value={userInput}
+                  onChange={handleInputChange}
+                  placeholder='Type your text here....'
+                  class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                />
+                <button
+                  class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="ml-4">
+              <button
+                onClick={handleSubmit}
+                class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+              >
+                <span>Send</span>
+                <span class="ml-2">
+                  <svg
+                    class="w-4 h-4 transform rotate-45 -mt-px"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    ></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div className="flex fixed items-end">
-      <form onSubmit={handleSubmit} className="max-w-80 bg-gray-50 rounded-lg p-2 flex items-center">
-        <input
-          id="chat"
-          type="text"
-          value={userInput}
-          onChange={handleInputChange}
-          className="p-2 text-lg text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 flex-1 mr-2"
-          placeholder="Your message..."
-        />
-        <button
-          type="submit"
-          className="p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100"
-        >
-          Send
-          <svg className="w-6 h-6 rotate-90 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </div>
+  </>
+  
   );
 }
 
