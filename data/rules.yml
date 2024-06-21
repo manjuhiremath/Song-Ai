@@ -7,7 +7,122 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: song Kannada_song
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: Kannada_song
+  - action: action_fetch_kannada_songs
+
+- rule: song Telugu_song
+  steps:
+  - intent: Telugu_song
+  - action: action_fetch_Telugu_songs
+
+- rule: song Hindi_song
+  steps:
+  - intent: Hindi_song
+  - action: action_fetch_Hindi_songs
+
+- rule: song Tamil_song
+  steps:
+  - intent: Tamil_song
+  - action: action_fetch_Tamil_songs
+
+- rule: song Marathi_song
+  steps:
+  - intent: Marathi_song
+  - action: action_fetch_Marathi_songs
+
+- rule: song English_song
+  steps:
+  - intent: English_song
+  - action: action_fetch_English_songs
+
+- rule: song Kannada_song sad
+  steps:
+  - intent: Kannada_song_sad
+  - action: action_fetch_kannada_songs
+
+- rule: song Telugu_song sad
+  steps:
+  - intent: Telugu_song_sad
+  - action: action_fetch_Telugu_songs
+
+- rule: song Hindi_song sad
+  steps:
+  - intent: Hindi_song_sad
+  - action: action_fetch_Hindi_songs
+
+- rule: song Tamil_song  sad
+  steps:
+  - intent: Tamil_song_sad
+  - action: action_fetch_Tamil_songs
+
+- rule: song Marathi_song sad
+  steps:
+  - intent: Marathi_song_sad
+  - action: action_fetch_Marathi_songs
+
+- rule: song English_song sad
+  steps:
+  - intent: English_song_sad
+  - action: action_fetch_English_songs
+
+- rule: song Kannada_song sagry
+  steps:
+  - intent: Kannada_song_angry
+  - action: action_fetch_kannada_songs
+
+- rule: song Telugu_song angry
+  steps:
+  - intent: Telugu_song_angry
+  - action: action_fetch_Telugu_songs
+
+- rule: song Hindi_song angry
+  steps:
+  - intent: Hindi_song_angry
+  - action: action_fetch_Hindi_songs
+
+- rule: song Tamil_song angry
+  steps:
+  - intent: Tamil_song_angry
+  - action: action_fetch_Tamil_songs
+
+- rule: song Marathi_song angry
+  steps:
+  - intent: Marathi_song_angry
+  - action: action_fetch_Marathi_songs
+
+- rule: song English_song angry
+  steps:
+  - intent: English_song_angry
+  - action: action_fetch_English_songs
+
+- rule: song Kannada_song calm
+  steps:
+  - intent: Kannada_song_calm
+  - action: action_fetch_kannada_songs
+
+- rule: song Telugu_song calm
+  steps:
+  - intent: Telugu_song_calm
+  - action: action_fetch_Telugu_songs
+
+- rule: song Hindi_song calm
+  steps:
+  - intent: Hindi_song_calm
+  - action: action_fetch_Hindi_songs
+
+- rule: song Tamil_song calm
+  steps:
+  - intent: Tamil_song_calm
+  - action: action_fetch_Tamil_songs
+
+- rule: song Marathi_song calm
+  steps: 
+  - intent: Marathi_song_calm
+  - action: action_fetch_Marathi_songs
+
+- rule: song English_song calm
+  steps:
+  - intent: English_song_calm
+  - action: action_fetch_English_songs

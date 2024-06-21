@@ -1,31 +1,46 @@
-import './App.css';
-import axios from 'axios';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Typography, Paper, Grid, TextField, Button, Skeleton, CircularProgress, Box } from '@mui/material';
 import ReactAudioPlayer from 'react-audio-player';
+import MuiAudioPlayer from 'material-ui-audio-player';
+import axios from 'axios';
 
 function Chatbot() {
-  const [responseMsg, setResponseMsg] = useState("");
   const [userInput, setUserInput] = useState("");
   const [chatLogs, setChatLogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); // State to track loading state for previous messages
   const [isSending, setIsSending] = useState(false); // State to track loading state for current message being sent
+  const [isWaitingForBotResponse, setIsWaitingForBotResponse] = useState(false); // State to track if waiting for bot's response
 
   const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
 
   const sendMessage = async (message) => {
-    setIsSending(true); // Set sending state when sending a new message
+    // Store the user message separately
+    const userMessage = { text: message, isUser: true };
+
     try {
+      setIsSending(true); // Set sending state when sending a new message
+
+      // Send message to Rasa server
       const response = await axios.post(`http://localhost:5005/webhooks/rest/webhook`, {
         sender: 'user',
         message: message
       });
 
-      const botMessages = response.data.map(msg => msg.text).join('\n');
-      const audioUrl = response.data[0]?.custom?.payload === "audio" ? response.data[0].custom.url : null;
-      setResponseMsg(botMessages);
+      // Process bot's messages
+      const botMessages = response.data.map(msg => ({
+        text: msg.text,
+        isUser: false, // Marking messages from bot
+        audioUrl: msg.custom?.payload === "audio" ? msg.custom.url : null
+      }));
 
-      setChatLogs(prevLogs => [...prevLogs, { user: message, bot: botMessages, audio: audioUrl }]);
+      // Add user message first, then set bot messages after delay
+      setChatLogs(prevLogs => [...prevLogs, userMessage]);
+
+      // Delay setting bot messages to simulate bot typing delay
+      setTimeout(() => {
+        setChatLogs(prevLogs => [...prevLogs, ...botMessages]);
+      }, 3000); // Display bot's message after 3 seconds
+
     } catch (error) {
       console.error('Error sending message to Rasa:', error);
     } finally {
@@ -40,115 +55,167 @@ function Chatbot() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (userInput.trim() !== "") {
-      setIsSending(true);
       await sendMessage(userInput);
       setUserInput("");
     }
     inputRef.current.focus(); // Keep focus on input field after sending message
   };
 
+  useEffect(() => {
+    // Function to set waiting state for bot's response
+    const setWaitingForBotResponse = () => {
+      setIsWaitingForBotResponse(true);
+      setTimeout(() => setIsWaitingForBotResponse(false), 3000); // Reset after 3 seconds
+    };
+
+    // Listen for user messages and set waiting state
+    if (chatLogs.length > 0 && chatLogs[chatLogs.length - 1].isUser) {
+      setWaitingForBotResponse();
+    }
+  }, [chatLogs]);
+
   // Automatically scroll to top when chat logs change
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [chatLogs]);
+  }, [chatLogs, isWaitingForBotResponse]);
 
   return (
-    <div className="flex flex-col p-10 mb-8 border-sky-500">
-      <div className="flex flex-col rounded-2xl bg-gray-500 p-8">
+    <div style={{
+      display: 'flex',
+      width: '60%',
+      justifyContent: 'center', // Center items horizontally
+      flexDirection: 'column',
+      marginTop: '10px',
+      padding: '10px',
+      marginBottom: '8px',
+      margin: 'auto' // Center the entire div horizontally
+    }}>
+      <Paper style={{ display: 'flex', flexDirection: 'column', padding: '8px', borderRadius: '16px', backgroundColor: '#f0f0f0' }} elevation={3}>
         {/* Display chat logs */}
-        <div className="flex flex-col" ref={chatContainerRef}>
+        <div style={{ display: 'flex', height: '450px', marginTop: '2px', flexDirection: 'column', overflowY: 'auto' }} ref={chatContainerRef}>
           {chatLogs.map((log, index) => (
-            <div className="flex flex-col" key={index}>
-              <div className="grid grid-cols-12 gap-y-2">
-                <div className="col-start-6 col-end-13 p-3 rounded-lg">
-                  <div className="flex items-center justify-start flex-row-reverse">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">User</div>
-                    <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                      <div>{log.user}</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-start-1 col-end-8 p-3 rounded-lg">
-                  <div className="flex flex-row items-center">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-violet-600 flex-shrink-0">Bot</div>
-                    <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                      <div>{isSending && index === chatLogs.length - 1 ? 'Sending...' : log.bot}</div>
-                      {log.audio && <ReactAudioPlayer className="mt-1" controls><source src={log.audio} text={log.title} type="audio/mp4" /></ReactAudioPlayer>}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Grid container key={index} alignItems="center" spacing={2}>
+              <Grid item xs={12}>
+                <Paper style={{
+                  padding: '12px',
+                  width: 'fit-content', // Adjusts width based on content length
+                  borderRadius: '16px',
+                  backgroundColor: log.isUser ? '#90CAF9 ' : '#CFD8DC ',
+                  color: 'white',
+                  alignSelf: log.isUser ? 'flex-end' : 'flex-start',
+                  marginBottom: '8px'
+                }}>
+                  <Typography color={'#373A40'}>{log.text}</Typography>
+                </Paper>
+                {log.audioUrl && (
+                  <Paper style={{ height: '110px', padding: '12px', width: 250, borderRadius: '16px', backgroundColor: log.isUser ? '#90CAF9' : '#CFD8DC', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
+                    <MuiAudioPlayer
+                      id="inline-timeline"
+                      display="timeline"
+                      inline
+                      src={log.audioUrl}
+                      autoPlay={false}
+                      volume={0.7}
+                      loop={false}
+                      showJumpControls={true}
+                      spacing={2}
+                      style={{
+                        width: '200px', // Set the width of the audio player
+                        height: '100px', // Set the height of the audio player
+                        backgroundColor: '#f0f0f0', // Custom styles for the player
+                        borderRadius: '8px',
+                        padding: '16px',
+                      }}
+                      onError={(error) => console.error('Audio Error:', error)} // Error handling function
+                    />
+                  </Paper>
+                )}
+              </Grid>
+            </Grid>
           ))}
+          {isWaitingForBotResponse &&
+            <Paper style={{ display: 'flex', padding: 12, flexDirection: 'row', height: '50px', width: 'fit-content', borderRadius: '16px', backgroundColor: '#CFD8DC', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
+              <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
+              <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
+              <Skeleton variant="circular" width={15} height={15} />
+            </Paper>
+          }
         </div>
 
-     
-      </div>
-      <form onSubmit={handleSubmit} className="flex flex-row items-center h-16 rounded-xl bg-slate-400 w-full px-4 sticky bottom-0">
-        <input ref={inputRef} type="text" value={userInput} onChange={handleInputChange} placeholder='Type your text here....' className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
-        <button onClick={handleSubmit} className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0 ml-4">
-          <span>Send</span>
-          <span className="ml-2">
-            <svg className="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18zm0 0v-8"></path>
-            </svg>
-          </span>
-        </button>
-      </form>
+        {/* Input form */}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', borderRadius: '16px', backgroundColor: '#eee', width: '100%', padding: '4px', position: 'sticky', bottom: '0' }}>
+          <TextField
+            ref={inputRef}
+            type="text"
+            value={userInput}
+            onChange={handleInputChange}
+            placeholder="Type your text here...."
+            variant="outlined"
+            size="small"
+            fullWidth
+          />
+          <Button
+            onClick={handleSubmit}
+            style={{ backgroundColor: '#3f51b5', color: 'white', borderRadius: '16px', marginLeft: '2px' }}
+            variant="contained"
+            disableElevation
+          >
+            Send
+          </Button>
+          {/* Loading indicator for sending button */}
+          {isSending && <CircularProgress size={24} style={{ marginLeft: '10px' }} />}
+        </form>
+      </Paper>
     </div>
   );
 }
 
 export default Chatbot;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import './App.css';
+// import React, { useState, useEffect, useRef } from 'react';
+// import { Typography, Paper, Grid, TextField, Button, Skeleton, CircularProgress, Chip, Box, Card } from '@mui/material';
+// import MuiAudioPlayer from 'material-ui-audio-player';
 // import axios from 'axios';
-// import { useState,useEffect,useRef } from 'react';
-// import ReactAudioPlayer from 'react-audio-player';
+// import Scrollbar from './Components/scrollbar'
 
 // function Chatbot() {
-//   const [responseMsg, setResponseMsg] = useState("");
 //   const [userInput, setUserInput] = useState("");
 //   const [chatLogs, setChatLogs] = useState([]);
-//   const [isLoading, setIsLoading] = useState(false); // State to track loading state
+//   const [isSending, setIsSending] = useState(false);
+//   const [isWaitingForBotResponse, setIsWaitingForBotResponse] = useState(false);
 
 //   const chatContainerRef = useRef(null);
+//   const inputRef = useRef(null);
 
+//   // Function to send a message to the Rasa server
 //   const sendMessage = async (message) => {
-//     setIsLoading(true); // Set loading state to true when sending message
+//     const userMessage = { text: message, isUser: true };
+
 //     try {
+//       setIsSending(true);
+
 //       const response = await axios.post(`http://localhost:5005/webhooks/rest/webhook`, {
 //         sender: 'user',
 //         message: message
 //       });
 
-//       const botMessages = response.data.map(msg => msg.text).join('\n');
-//       const audioUrl = response.data[0]?.custom?.payload === "audio" ? response.data[0].custom.url : null;
-//       setResponseMsg(botMessages);
+//       const botMessages = response.data.map(msg => ({
+//         text: msg.text,
+//         isUser: false,
+//         audioUrl: msg.custom?.payload === "audio" ? msg.custom.url : null,
+//         buttons: msg.buttons || []
+//       }));
+//       console.log(response.data)
+//       setChatLogs(prevLogs => [...prevLogs, userMessage]);
 
-//       setChatLogs(prevLogs => [...prevLogs, { user: message, bot: botMessages, audio: audioUrl }]);
+//         setIsSending(false)
+//         setChatLogs(prevLogs => [...prevLogs, ...botMessages]);
+
+
 //     } catch (error) {
 //       console.error('Error sending message to Rasa:', error);
-//     } finally {
-//       setIsLoading(false); // Set loading state to false when message is sent
 //     }
 //   };
 
@@ -156,159 +223,155 @@ export default Chatbot;
 //     setUserInput(event.target.value);
 //   };
 
+
 //   const handleSubmit = async (event) => {
 //     event.preventDefault();
-//     await sendMessage(userInput);
-//     setUserInput("");
+//     if (userInput.trim() !== "") {
+//       await sendMessage(userInput);
+//       setUserInput("");
+//     }
+//     inputRef.current.focus(); 
 //   };
 
-//   // Function to scroll to the bottom of the chat container
-//   const scrollToBottom = () => {
+//   const handleButtonClick = async (message) => {
+//     await sendMessage(message);
+//   };
+
+//   useEffect(() => {
 //     if (chatContainerRef.current) {
 //       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
 //     }
-//   };
-
-//   // Scroll to bottom when chat logs change
-//   useEffect(() => {
-//     scrollToBottom();
 //   }, [chatLogs]);
 
 //   return (
-//     <>
-//     {/* <div style={{ position: 'fixed', left: '50%', transform: 'translateX(-50%)', width: '80%', zIndex: 999 }} */}
-// {/* > */}
-//     <div className="flex flex-col flex-auto h-full p-10 mb-8 border-sky-500">
-//       <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-500 h-full p-8">
+//     <div style={{
+//       display: 'flex',
+//       width: '55%',
+//       justifyContent: 'center',
+//       flexDirection: 'column',
+//       marginTop: '10px',
+//       padding: '10px',
+//       marginBottom: '8px',
+//       margin: 'auto'
+//     }}>
+//       <Card style={{ display: 'flex', flexDirection: 'column', padding: '8px', borderRadius: '16px' }} elevation={3}>
 //         {/* Display chat logs */}
-//         <div className="flex flex-col h-full scroll-smooth md:scroll-auto mb-4">
+//         {/* <Scrollbar style={{ height: '460px', width: '100%' }}> */}
+       
+//         <div style={{ overflowX: 'hidden', display: 'flex', height: '450px', flexDirection: 'column', overflowY: 'auto' }} ref={chatContainerRef}>
+         
 //           {chatLogs.map((log, index) => (
-//             <div className="flex flex-col h-full" key={index}>
-//               <div className="grid grid-cols-12 gap-y-2">
-//                 <div className="col-start-6 col-end-13 p-3 rounded-lg">
-//                   <div className="flex items-center justify-start flex-row-reverse">
-//                     <div
-//                       className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-//                     >
-//                       User
-//                     </div>
-//                     <div
-//                       className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-//                     >
-//                       <div>{log.user}</div>
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <div className="col-start-1 col-end-8 p-3 rounded-lg">
-//                   <div className="flex flex-row items-center">
-//                     <div
-//                       className="flex items-center justify-center h-10 w-10 rounded-full bg-violet-600 flex-shrink-0"
-//                     >
-//                       Bot
-//                     </div>
-//                     <div
-//                       className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-//                     >
-//                        {isLoading ? <div>Loading...</div> : <div>{log.bot}</div>}
-//                       {/* <div>{log.bot}</div> */}
-//                       {log.audio && <ReactAudioPlayer className="mt-1" controls ><source src={log.audio} text={log.title} type="audio/mp4" /></ReactAudioPlayer>}
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
+//             <Grid container key={index} justifyContent={log.isUser ? 'flex-end' : 'flex-start'} spacing={4}>
+//               <Grid item xs={12} style={{ width: '100%' }}>
+//                 {log.text && (
+//                   <Paper
+//                     style={{
+//                       padding: '12px',
+//                       width: 'fit-content',
+//                       borderRadius: '16px',
+//                       backgroundColor: log.isUser ? '#1679AB' : '#0E46A3',
+//                       color: 'white',
+//                       textAlign: log.isUser ? 'right' : 'left',
+//                       alignSelf: log.isUser ? 'flex-end' : 'flex-start',
+//                       marginBottom: '8px',
+//                       marginLeft: log.isUser ? 'auto' : '0',
+//                       marginRight: log.isUser ? '0' : 'auto'
+//                     }}
+//                   >
+//                     <Typography >{log.text}</Typography>
+//                   </Paper>
+//                 )}
+//                 {log.audioUrl && (
+//                   <Paper
+//                     style={{
+//                       overflow: 'hidden',
+//                       height: '109px',
+//                       padding: '12px',
+//                       width: 250,
+//                       borderRadius: '10px',
+//                       backgroundColor: log.isUser ? '#90CAF9' : '#0E46A3',
+//                       color: 'white',
+//                       marginBottom: '8px',
+//                       textAlign: 'left', // Assuming audio component is aligned to the left
+//                       alignSelf: 'flex-start',
+//                     }}
+//                   >
+//                     <MuiAudioPlayer
+//                       id={`inline-timeline-${index}`}
+//                       display="timeline"
+//                       inline
+//                       src={log.audioUrl}
+//                       autoPlay={false}
+//                       volume={0.7}
+//                       loop={false}
+//                       showJumpControls={true}
+//                       spacing={2}
+//                       style={{
+//                         width: '200px',
+//                         height: '100px',
+//                         backgroundColor: '#f0f0f0',
+//                         borderRadius: '8px',
+//                         padding: '16px',
+//                       }}
+//                       onError={(error) => console.error('Audio Error:', error)}
+//                     />
+//                   </Paper>
+//                 )}
+//                 {log.buttons && log.buttons.length > 0 &&
+//                   <Box style={{ display: 'flex', width: 200, justifyContent: 'flex-start', marginTop: '8px' }}>
+//                     {log.buttons.map((button, buttonIndex) => (
+//                       <Chip
+//                         key={buttonIndex}
+//                         variant="outlined"
+//                         color="primary"
+//                         label={button.title}
+//                         style={{ margin: '4px' }}
+//                         onClick={() => handleButtonClick(button.title)}
+//                       >
+//                         {button.title}
+//                       </Chip>
+//                     ))}
+//                   </Box>
+//                 }
+//               </Grid>
+//             </Grid>
 //           ))}
+//           {isSending &&
+//             <Paper style={{ display: 'flex', padding: 12, flexDirection: 'row', height: '40px', width: 'fit-content', borderRadius: '16px', backgroundColor: '#CFD8DC', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
+//               <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
+//               <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
+//               <Skeleton variant="circular" width={15} height={15} />
+//             </Paper>
+//           }
+
 //         </div>
-//         {/* </div> */}
+//         {/* </Scrollbar> */}
 
-
-//         <form onSubmit={handleSubmit}>
-//         <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '80%', zIndex: 999 }}
-// >
-//           <div
-//             className="flex flex-row items-center h-16 rounded-xl bg-slate-400 w-full px-4"
+//         {/* Input form with buttons */}
+//         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', borderRadius: '16px', width: '100%', padding: '4px', position: 'sticky', bottom: '0' }}>
+//           <TextField
+//             ref={inputRef}
+//             type="text"
+//             value={userInput}
+//             onChange={handleInputChange}
+//             placeholder="Type your text here...."
+//             variant="outlined"
+//             size="small"
+//             fullWidth
+//           />
+//           <Button
+//             onClick={handleSubmit}
+//             style={{ backgroundColor: '#3f51b5', color: 'white', borderRadius: '16px', marginLeft: '2px' }}
+//             variant="contained"
+//             disableElevation
 //           >
-//             <div>
-//               <button
-//                 className="flex items-center justify-center text-gray-400 hover:text-gray-600"
-//               >
-//                 <svg
-//                   className="w-5 h-5"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   viewBox="0 0 24 24"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                 >
-//                   <path
-//                     stroke-linecap="round"
-//                     stroke-linejoin="round"
-//                     stroke-width="2"
-//                     d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-//                   ></path>
-//                 </svg>
-//               </button>
-//             </div>
-//             <div className="flex-grow ml-4">
-//               <div className="relative w-full">
-//                 <input
-//                   type="text"
-//                   value={userInput}
-//                   onChange={handleInputChange}
-//                   placeholder='Type your text here....'
-//                   class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
-//                 />
-//                 <button
-//                   className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
-//                 >
-//                   <svg
-//                     className="w-6 h-6"
-//                     fill="none"
-//                     stroke="currentColor"
-//                     viewBox="0 0 24 24"
-//                     xmlns="http://www.w3.org/2000/svg"
-//                   >
-//                     <path
-//                       stroke-linecap="round"
-//                       stroke-linejoin="round"
-//                       stroke-width="2"
-//                       d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-//                     ></path>
-//                   </svg>
-//                 </button>
-//               </div>
-//             </div>
-//             <div className="ml-4">
-//               <button
-//                 onClick={handleSubmit}
-//                 class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
-//               >
-//                 <span>Send</span>
-//                 <span className="ml-2">
-//                   <svg
-//                     className="w-4 h-4 transform rotate-45 -mt-px"
-//                     fill="none"
-//                     stroke="currentColor"
-//                     viewBox="0 0 24 24"
-//                     xmlns="http://www.w3.org/2000/svg"
-//                   >
-//                     <path
-//                       stroke-linecap="round"
-//                       stroke-linejoin="round"
-//                       stroke-width="2"
-//                       d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-//                     ></path>
-//                   </svg>
-//                 </span>
-//               </button>
-//             </div>
-//           </div>
-//         </div>
+//             Send
+//           </Button>
+//           {/* Loading indicator for sending button */}
+//           {/* {isSending && <CircularProgress size={24} style={{ marginLeft: '10px' }} />} */}
 //         </form>
-//       </div>
-      
+//       </Card>
 //     </div>
-//   </>
-  
 //   );
 // }
 

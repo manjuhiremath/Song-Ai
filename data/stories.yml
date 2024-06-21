@@ -1,239 +1,161 @@
 version: "3.1"
 
-
 stories:
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_mood_happy
+  - story: greet path
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-- story: unhappy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_mood_unhappy
+  - story: happy path
+    steps:
+      - intent: mood_happy
+      - action: utter_mood_happy
 
-- story: angry path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_angry
-  - action: utter_mood_angry
+  - story: unhappy path
+    steps:
+      - intent: mood_sad
+      - action: utter_mood_sad
 
-- story: scared path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_scared
-  - action: utter_mood_scared
+  - story: angry path
+    steps:
+      - intent: mood_angry
+      - action: utter_mood_angry
 
-- story: nervous path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_nervous
-  - action: utter_mood_nervous
+  - story: calm path
+    steps:
+      - intent: mood_calm
+      - action: utter_mood_calm
 
-- story: bored path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_bored
-  - action: utter_mood_bored
+  - story: say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
 
-- story: excited path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_excited
-  - action: utter_mood_excited
-
-- story: lonely path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_lonely
-  - action: utter_mood_lonely
-
-- story: tired path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_tired
-  - action: utter_mood_tired
-
-- story: say goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: play song
-  steps:
-  - intent: play_song
-  - action: action_play_song
-  - slot_was_set:
-    - song_name: "{{ song_name }}"
+  - story: play song
+    steps:
+      - intent: play_song
+      - action: action_play_song
+      - slot_was_set:
+          - song_name: "{{ song_name }}"
 
 
-# version: "3.1"
+  - story: Kannada Songs Selection
+    steps:
+      - intent: Kannada_song
+      - action: action_fetch_kannada_songs
 
-# stories:
 
-# - story: happy_path_greet_play_song
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - checkpoint: greeted
-#   - intent: play_song
-#   - action: action_play_song
-#   - slot_was_set:
-#     - song_name: "{{ song_name }}"
-#   - checkpoint: song_played
+  - story: Kannada Songs Selection sad
+    steps:
+      - intent: Kannada_song_sad
+      - action: action_fetch_kannada_songs
 
-# - story: sad_path_greet_goodbye
-#   steps:
-#   - intent: goodbye
-#   - action: utter_goodbye
+  - story: Kannada Songs Selection angry
+    steps:
+      - intent: Kannada_song_angry
+      - action: action_fetch_kannada_songs
 
-# - story: bot_functions
-#   steps:
-#   - intent: bot_functions
-#   - action: utter_bot_functions
+  - story: Kannada Songs Selection calm
+    steps:
+      - intent: Kannada_song_calm
+      - action: action_fetch_kannada_songs
 
-# - story: interactive1
-#   steps:
-#   - intent: smalltalk_user_angry
-#   - action: utter_smalltalk_user_angry
+  - story: Telugu Songs Selection
+    steps:
+      - intent: Telugu_song
+      - action: action_fetch_Telugu_songs
 
-# - story: interactive2
-#   steps:
-#   - intent: smalltalk_user_back
-#   - action: utter_smalltalk_user_back
+  - story: Hindi Songs Selection
+    steps:
+      - intent: Hindi_song
+      - action: action_fetch_Hindi_songs
 
-# - story: interactive3
-#   steps:
-#   - intent: smalltalk_user_bored
-#   - action: utter_smalltalk_user_bored
-  
-# - story: interactive4
-#   steps:
-#   - intent: smalltalk_user_busy
-#   - action: utter_smalltalk_user_busy
-  
-# - story: interactive5
-#   steps:
-#   - intent: smalltalk_user_can_not_sleep
-#   - action: utter_smalltalk_user_can_not_sleep
+  - story: Tamil Songs Selection
+    steps:
+      - intent: Tamil_song
+      - action: action_fetch_Tamil_songs
 
-# - story: interactive6
-#   steps:
-#   - intent: smalltalk_user_does_not_want_to_talk
-#   - action: utter_smalltalk_user_does_not_want_to_talk
+  - story: Marathi Songs Selection
+    steps:
+      - intent: Marathi_song
+      - action: action_fetch_Marathi_songs
 
-# - story: interactive7
-#   steps:
-#   - intent: smalltalk_user_excited
-#   - action: utter_smalltalk_user_excited
+  - story: English Songs Selection
+    steps:
+      - intent: English_song
+      - action: action_fetch_English_songs
 
-# - story: interactive8
-#   steps:
-#   - intent: smalltalk_user_going_to_bed
-#   - action: utter_smalltalk_user_going_to_bed
+  - story: Telugu Songs Selection sad
+    steps:
+      - intent: Telugu_song_sad
+      - action: action_fetch_Telugu_songs
 
-# - story: interactive9
-#   steps:
-#   - intent: smalltalk_user_good
-#   - action: utter_smalltalk_user_good
+  - story: Hindi Songs Selection
+    steps:
+      - intent: Hindi_song_sad
+      - action: action_fetch_Hindi_songs
 
-# - story: interactive10
-#   steps:
-#   - intent: smalltalk_user_happy
-#   - action: utter_smalltalk_user_happy
+  - story: Tamil Songs Selection sad
+    steps:
+      - intent: Tamil_song_sad
+      - action: action_fetch_Tamil_songs
 
-# - story: interactive11
-#   steps:
-#   - intent: smalltalk_user_has_birthday
-#   - action: utter_smalltalk_user_has_birthday
+  - story: Marathi Songs Selection sad
+    steps:
+      - intent: Marathi_song_sad
+      - action: action_fetch_Marathi_songs
 
-# - story: interactive12
-#   steps:
-#   - intent: smalltalk_user_here
-#   - action: utter_smalltalk_user_here
+  - story: English Songs Selection sad
+    steps:
+      - intent: English_song_sad
+      - action: action_fetch_English_songs
 
-# - story: interactive13
-#   steps:
-#   - intent: smalltalk_user_joking
-#   - action: utter_smalltalk_user_joking
+  - story: Telugu Songs Selection angry
+    steps:
+      - intent: Telugu_song_angry
+      - action: action_fetch_Telugu_songs
 
-# - story: interactive14
-#   steps:
-#   - intent: smalltalk_user_likes_agent
-#   - action: utter_smalltalk_user_likes_agent
+  - story: Hindi Songs Selection angry
+    steps:
+      - intent: Hindi_song_angry
+      - action: action_fetch_Hindi_songs
 
-# - story: interactive15
-#   steps:
-#   - intent: smalltalk_user_lonely
-#   - action: utter_smalltalk_user_lonely
+  - story: Tamil Songs Selection angry
+    steps:
+      - intent: Tamil_song_angry
+      - action: action_fetch_Tamil_songs
 
-# - story: interactive16
-#   steps:
-#   - intent: smalltalk_user_looks_like
-#   - action: utter_smalltalk_user_looks_like
+  - story: Marathi Songs Selection angry
+    steps:
+      - intent: Marathi_song_angry
+      - action: action_fetch_Marathi_songs
 
-# - story: interactive17
-#   steps:
-#   - intent: smalltalk_user_loves_agent
-#   - action: utter_smalltalk_user_loves_agent
+  - story: English Songs Selection angry
+    steps:
+      - intent: English_song_angry
+      - action: action_fetch_English_songs
 
-# - story: interactive18
-#   steps:
-#   - intent: smalltalk_user_misses_agent
-#   - action: utter_smalltalk_user_misses_agent
+  - story: Telugu Songs Selection calm
+    steps:
+      - intent: Telugu_song_calm
+      - action: action_fetch_Telugu_songs
 
-# - story: interactive19
-#   steps:
-#   - intent: smalltalk_user_needs_advice
-#   - action: utter_smalltalk_user_needs_advice
+  - story: Hindi Songs Selection calm
+    steps:
+      - intent: Hindi_song_calm
+      - action: action_fetch_Hindi_songs
 
-# - story: interactive20
-#   steps:
-#   - intent: smalltalk_user_sad
-#   - action: utter_smalltalk_user_sad
+  - story: Tamil Songs Selection calm
+    steps:
+      - intent: Tamil_song_calm
+      - action: action_fetch_Tamil_songs
 
-# - story: interactive21
-#   steps:
-#   - intent: smalltalk_user_sleepy
-#   - action: utter_smalltalk_user_sleepy
+  - story: Marathi Songs Selection calm
+    steps:
+      - intent: Marathi_song_calm
+      - action: action_fetch_Marathi_songs
 
-# - story: interactive22
-#   steps:
-#   - intent: smalltalk_user_testing_agent
-#   - action: utter_smalltalk_user_testing_agent
-
-# - story: interactive23
-#   steps:
-#   - intent: smalltalk_user_tired
-#   - action: utter_smalltalk_user_tired
-  
-# - story: interactive24
-#   steps:
-#   - intent: smalltalk_user_waits
-#   - action: utter_smalltalk_user_waits
- 
-# - story: interactive25
-#   steps:
-#   - intent: smalltalk_user_wants_to_see_agent_again
-#   - action: utter_smalltalk_user_wants_to_see_agent_again
- 
-# - story: interactive26
-#   steps:
-#   - intent: smalltalk_user_wants_to_talk
-#   - action: utter_smalltalk_user_wants_to_talk
-
-# - story: interactive27
-#   steps:
-#   - intent: smalltalk_user_will_be_back
-#   - action: utter_smalltalk_user_will_be_back
+  - story: English Songs Selection calm
+    steps:
+      - intent: English_song_calm
+      - action: action_fetch_English_songs

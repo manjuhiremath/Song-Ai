@@ -1,22 +1,20 @@
 {
-  "name": "botfrontend",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.20",
-    "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "material-ui-audio-player": "^1.7.1",
     "react": "^18.3.1",
-    "react-audio-player": "^0.17.0",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "simplebar-react": "^3.2.6",
-    "web-vitals": "^4.1.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,8 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.4"
   }
 }
