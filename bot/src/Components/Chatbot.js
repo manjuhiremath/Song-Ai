@@ -1,9 +1,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Typography, Paper, Grid, TextField, Button, Skeleton, CircularProgress, Chip, Box, Card } from '@mui/material';
-import MuiAudioPlayer from 'material-ui-audio-player';
+import { Typography, Paper, Grid, TextField, Button, Skeleton, CircularProgress, Chip, Box, Card, IconButton } from '@mui/material';
+// import MuiAudioPlayer from 'material-ui-audio-player';
 import axios from 'axios';
+// import { Audio } from '@mui/material';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 // import Scrollbar from './Components/scrollbar'
+import { Scrollbar } from 'react-scrollbars-custom';
 
 function Chatbot() {
   const [userInput, setUserInput] = useState("");
@@ -35,8 +38,8 @@ function Chatbot() {
       console.log(response.data)
       setChatLogs(prevLogs => [...prevLogs, userMessage]);
 
-        setIsSending(false)
-        setChatLogs(prevLogs => [...prevLogs, ...botMessages]);
+      setIsSending(false)
+      setChatLogs(prevLogs => [...prevLogs, ...botMessages]);
 
 
     } catch (error) {
@@ -55,7 +58,7 @@ function Chatbot() {
       await sendMessage(userInput);
       setUserInput("");
     }
-    inputRef.current.focus(); 
+    inputRef.current.focus();
   };
 
   const handleButtonClick = async (message) => {
@@ -66,7 +69,7 @@ function Chatbot() {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [chatLogs,isSending]);
+  }, [chatLogs, isSending]);
 
   return (
     <div style={{
@@ -74,19 +77,20 @@ function Chatbot() {
       width: '55%',
       justifyContent: 'center',
       flexDirection: 'column',
-      marginTop: '10px',
+      marginTop: '25px',
       padding: '10px',
       marginBottom: '8px',
-      margin: 'auto'
+      margin: 'auto',
     }}>
-      <Card style={{ display: 'flex', flexDirection: 'column', padding: '8px', borderRadius: '16px' }} elevation={3}>
-       
+
+      <Card style={{ backgroundColor: '#26355D', display: 'flex', flexDirection: 'column', padding: '8px', borderRadius: '16px' }} elevation={3}>
+        {/* <Scrollbar style={{ width: 250, height: 250 }}> */}
         <div style={{ overflowX: 'hidden', display: 'flex', height: '450px', flexDirection: 'column', overflowY: 'auto' }} ref={chatContainerRef}>
-         
+
           {chatLogs.map((log, index) => (
             <Grid container key={index} justifyContent={log.isUser ? 'flex-end' : 'flex-start'} spacing={4}>
               <Grid item xs={12} style={{ width: '100%' }}>
-             
+
                 {log.text && (
                   <Paper
                     style={{
@@ -120,7 +124,7 @@ function Chatbot() {
                       alignSelf: 'flex-start',
                     }}
                   >
-                    <MuiAudioPlayer
+                    <audio
                       id={`inline-timeline-${index}`}
                       display="timeline"
                       inline
@@ -160,40 +164,49 @@ function Chatbot() {
               </Grid>
 
             </Grid>
-                 
+
           ))}
-              {isSending &&
-                        <Paper style={{ display: 'flex', padding: 12, flexDirection: 'row', height: '20px', width: 'fit-content', borderRadius: '16px', backgroundColor: '#0E46A3', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
-                          <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
-                          <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
-                          <Skeleton variant="circular" width={15} height={15} />
-                        </Paper>
-                      }
+          {isSending &&
+            <Paper style={{ display: 'flex', padding: 12, flexDirection: 'row', height: '20px', width: 'fit-content', borderRadius: '16px', backgroundColor: '#0E46A3', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
+              <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
+              <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
+              <Skeleton variant="circular" width={15} height={15} />
+            </Paper>
+          }
         </div>
         {/* </Scrollbar> */}
 
+        {/* </Scrollbar> */}
+
         {/* Input form with buttons */}
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', borderRadius: '16px', width: '90%',marginLeft:'25px', padding: '4px', position: 'sticky', bottom: '0' }}>
+        {/* <Card style={{backgroundColor:'#0F6292',borderRadius: '16px'}}> */}
+        <form onSubmit={handleSubmit} style={{color: 'white', display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', borderRadius: '16px', width: '95%', marginLeft: '25px', padding: '4px', position: 'sticky', bottom: '0' }}>
           <TextField
             ref={inputRef}
             type="text"
             value={userInput}
             onChange={handleInputChange}
             placeholder="Type your text here...."
-            variant="outlined"
-            size="small"
+            variant="standard"
+            // color="success"
             fullWidth
           />
-          <Button
+          {/* <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: '#3f51b5', color: 'white', borderRadius: '16px', marginLeft: '2px' }}
+            style={{ backgroundColor: '#3f51b5', color: 'white', borderRadius: '16px', marginLeft: '10px' }}
             variant="contained"
             disableElevation
           >
             Send
-          </Button>
-          {/* Loading indicator for sending button */}
-          {/* {isSending && <CircularProgress size={24} style={{ marginLeft: '10px' }} />} */}
+          </Button> */}
+          <IconButton
+            style={{ backgroundColor: '#3f51b5' }}
+            onClick={handleSubmit}>
+            <SendRoundedIcon
+              color='#3f51b5'
+              style={{ paddingLeft: '5px' }}
+            />
+          </IconButton>
         </form>
       </Card>
     </div>
