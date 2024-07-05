@@ -48,17 +48,17 @@ stories:
   - story: Kannada Songs Selection sad
     steps:
       - intent: Kannada_song_sad
-      - action: action_fetch_kannada_songs
+      - action: action_fetch_kannada_sad_songs
 
   - story: Kannada Songs Selection angry
     steps:
       - intent: Kannada_song_angry
-      - action: action_fetch_kannada_songs
+      - action: action_fetch_kannada_angry_songs
 
   - story: Kannada Songs Selection calm
     steps:
       - intent: Kannada_song_calm
-      - action: action_fetch_kannada_songs
+      - action: action_fetch_kannada_calm_songs
 
   - story: Telugu Songs Selection
     steps:

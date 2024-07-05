@@ -97,7 +97,7 @@ function Chatbot() {
                       padding: '12px',
                       width: 'fit-content',
                       borderRadius: '16px',
-                      backgroundColor: log.isUser ? '#1679AB' : '#0E46A3',
+                      backgroundColor: log.isUser ? '#864AF9' : '#5A639C',
                       color: 'white',
                       textAlign: log.isUser ? 'right' : 'left',
                       alignSelf: log.isUser ? 'flex-end' : 'flex-start',
@@ -113,11 +113,11 @@ function Chatbot() {
                   <Paper
                     style={{
                       overflow: 'hidden',
-                      height: '87px',
+                      height: '40px',
                       padding: '12px',
                       width: 250,
                       borderRadius: '10px',
-                      backgroundColor: log.isUser ? '#90CAF9' : '#0E46A3',
+                      backgroundColor: log.isUser ? '#864AF9' : '#5A639C',
                       color: 'white',
                       marginBottom: '8px',
                       textAlign: 'left', // Assuming audio component is aligned to the left
@@ -125,33 +125,25 @@ function Chatbot() {
                     }}
                   >
                     <audio
-                      id={`inline-timeline-${index}`}
-                      display="timeline"
-                      inline
+                      controls
                       src={log.audioUrl}
-                      autoPlay={false}
-                      volume={0.7}
-                      loop={false}
-                      showJumpControls={true}
-                      spacing={2}
                       style={{
-                        width: '200px',
-                        height: '100px',
-                        backgroundColor: '#f0f0f0',
+                        width: '100%',
+                        height: '40px',
                         borderRadius: '8px',
-                        padding: '16px',
                       }}
                       onError={(error) => console.error('Audio Error:', error)}
                     />
                   </Paper>
                 )}
                 {log.buttons && log.buttons.length > 0 &&
-                  <Box style={{ display: 'flex', width: 200, justifyContent: 'flex-start', marginTop: '8px' }}>
+                  <Box style={{  width: 400, justifyContent: 'flex-start', marginTop: '8px' }}>
                     {log.buttons.map((button, buttonIndex) => (
                       <Chip
                         key={buttonIndex}
-                        variant="outlined"
-                        color="primary"
+                        variant="contained"
+                        color='primary'
+                        // style={{ backgroundColor: '#20b2aa', color: 'white', margin: '4px' }}
                         label={button.title}
                         style={{ margin: '4px' }}
                         onClick={() => handleButtonClick(button.title)}
@@ -167,20 +159,15 @@ function Chatbot() {
 
           ))}
           {isSending &&
-            <Paper style={{ display: 'flex', padding: 12, flexDirection: 'row', height: '20px', width: 'fit-content', borderRadius: '16px', backgroundColor: '#0E46A3', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
+            <Paper style={{ display: 'flex', padding: 12, flexDirection: 'row', height: '20px', width: 'fit-content', borderRadius: '16px', backgroundColor: '#5A639C', color: 'white', alignSelf: 'flex-start', marginBottom: '8px' }}>
               <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
               <Skeleton variant="circular" sx={{ marginRight: 0.2 }} width={15} height={15} />
               <Skeleton variant="circular" width={15} height={15} />
             </Paper>
           }
         </div>
-        {/* </Scrollbar> */}
 
-        {/* </Scrollbar> */}
-
-        {/* Input form with buttons */}
-        {/* <Card style={{backgroundColor:'#0F6292',borderRadius: '16px'}}> */}
-        <form onSubmit={handleSubmit} style={{color: 'white', display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', borderRadius: '16px', width: '95%', marginLeft: '25px', padding: '4px', position: 'sticky', bottom: '0' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '60px', borderRadius: '16px', width: '95%', marginLeft: '25px', padding: '4px', position: 'sticky', bottom: '0' }}>
           <TextField
             ref={inputRef}
             type="text"
@@ -188,23 +175,15 @@ function Chatbot() {
             onChange={handleInputChange}
             placeholder="Type your text here...."
             variant="standard"
-            // color="success"
             fullWidth
+            inputProps={{ style: { color: 'white' } }} // Set text color to white
           />
-          {/* <Button
-            onClick={handleSubmit}
-            style={{ backgroundColor: '#3f51b5', color: 'white', borderRadius: '16px', marginLeft: '10px' }}
-            variant="contained"
-            disableElevation
-          >
-            Send
-          </Button> */}
           <IconButton
             style={{ backgroundColor: '#3f51b5' }}
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+          >
             <SendRoundedIcon
-              color='#3f51b5'
-              style={{ paddingLeft: '5px' }}
+              style={{ paddingLeft: '5px' }} // Ensure icon color is white
             />
           </IconButton>
         </form>

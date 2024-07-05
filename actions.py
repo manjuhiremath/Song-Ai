@@ -70,8 +70,86 @@ class ActionFetchSong(Action):
           dispatcher.utter_message("Unable to respond at the movement")
         
         return []
+    
+class ActionFetchKannadaSadSongs(Action):
+    def name(self) -> Text:
+        return "action_fetch_kannada_sad_songs"
 
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+            # song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+        if song_names:
+            song = random.choice(song_names)
+            # song = song_names
+            machine = SongMachine()
+            data = machine.fetchSong(song)
+            if data['url']:
+                dispatcher.utter_message("Here's your song")
+                dispatcher.utter_message('Title: ' + song)
+                dispatcher.utter_custom_json({"payload": 'audio', "url": data['url'], 'title': data['title']})
+            else:
+                dispatcher.utter_message("I couldn't find the song you asked for.")
+        else:
+            dispatcher.utter_message("Unable to respond at the moment")
+
+        return []
+
+class ActionFetchKannadaAngrySongs(Action):
+    def name(self) -> Text:
+        return "action_fetch_kannada_angry_songs"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        song_names = ['Sadillade', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+  
+            # song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+        if song_names:
+            song = random.choice(song_names)
+            # song = song_names
+            machine = SongMachine()
+            data = machine.fetchSong(song)
+            if data['url']:
+                dispatcher.utter_message("Here's your song")
+                dispatcher.utter_message('Title: ' + song)
+                dispatcher.utter_custom_json({"payload": 'audio', "url": data['url'], 'title': data['title']})
+            else:
+                dispatcher.utter_message("I couldn't find the song you asked for.")
+        else:
+            dispatcher.utter_message("Unable to respond at the moment")
+
+        return []
+
+class ActionFetchKannadaCalmSongs(Action):
+    def name(self) -> Text:
+        return "action_fetch_kannada_calm_songs"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        song_names = ['Sadillade', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+  
+            # song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+        if song_names:
+            song = random.choice(song_names)
+            # song = song_names
+            machine = SongMachine()
+            data = machine.fetchSong(song)
+            if data['url']:
+                dispatcher.utter_message("Here's your song")
+                dispatcher.utter_message('Title: ' + song)
+                dispatcher.utter_custom_json({"payload": 'audio', "url": data['url'], 'title': data['title']})
+            else:
+                dispatcher.utter_message("I couldn't find the song you asked for.")
+        else:
+            dispatcher.utter_message("Unable to respond at the moment")
+
+        return []
 
 class ActionFetchKannadaSongs(Action):
     def name(self) -> Text:
@@ -81,21 +159,11 @@ class ActionFetchKannadaSongs(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        intent = tracker.latest_message['intent'].get('name')
-
-        if intent == "Kannada_song_sad":
-            song_names = ['Sadillade', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
-        elif intent == "Kannada_song_angry":
-            song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
-        elif intent == "Kannada_song_calm":
-            song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
-        elif intent == "Kannada_song":
-            song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
-        else:
-            song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
+        song_names = ['Neeralli Sanna(Duet Version)', 'Ninna Gungalli', 'Anthu Inthu', 'Madarangi']
 
         if song_names:
             song = random.choice(song_names)
+            song = song_names
             machine = SongMachine()
             data = machine.fetchSong(song)
             if data['url']:
@@ -203,7 +271,6 @@ class ActionFetchMarathiSongs(Action):
         song_names = ['Gulabi Sadi','Chandra','Sairat','Dolby Walya']
       else:
         song_names = ['Gulabi Sadi','Chandra','Sairat','Dolby Walya']
-      # song_names = ['Gulabi Sadi','Chandra','Sairat','Dolby Walya']
       song = random.choice(song_names)
 
       if song is not None:
@@ -239,8 +306,6 @@ class ActionFetchTamilSongs(Action):
         song_names = ['Kaadhal En Kaviyae','Enna Solla','Unakku Thaan','Adi Penne']
       else:
         song_names = ['Kaadhal En Kaviyae','Enna Solla','Unakku Thaan','Adi Penne']
-      # song_name = tracker.get_slot('Kannada')
-      # song_names = ['Kaadhal En Kaviyae','Enna Solla','Unakku Thaan','Adi Penne']
       song = random.choice(song_names)
 
       if song is not None:

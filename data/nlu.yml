@@ -3,12 +3,18 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
+    - ✋
+    - 👋
+    - 🙋‍♂️
+    - 🙋‍♀️
     - hey
     - hello
     - hi
     - hello there
     - good morning
     - good evening
+    - good morning ☀️
+    - good evening 🌙
     - moin
     - hey there
     - let's go
@@ -16,22 +22,36 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - good morning 😊
+    - good evening 😌
+    - good afternoon 😊
 
 - intent: goodbye
   examples: |
+    - 👋
     - cu
     - good by
     - cee you later
-    - good night
+    - good night👋
+    - bye👋
     - bye
     - goodbye
     - have a nice day
     - see you around
     - bye bye
     - see you later
+    - see you later 👋
 
 - intent: mood_happy
   examples: |
+    - 😀
+    - 😃
+    - 😄
+    - 😁
+    - 😆
+    - 😂
+    - 😊
+    - 😸
     - I am happy
     - I feel great
     - I'm fine
@@ -60,9 +80,49 @@ nlu:
     - Today is an awesome day!
     - I'm so glad
     - I'm just really happy right now
+    - I am happy 😊
+    - I feel great 😃
+    - I'm fine 😁
+    - I had a great day 😄
+    - Me, wonderful! 😆
+    - I am amazed 😲
+    - You are too cool 😎
+    - I am loving it 😍
+    - I am starting to like this 😁
+    - I am feeling great 😃
+    - Doing fine 😌
+    - Never better 👍
+    - Feeling lucky 🍀
+    - All great here 😃
+    - Fantastic day 😆
+    - What a great day 🌞
+    - I'm inspired 🌟
+    - It's perfect 👌
+    - amazing 😲
+    - I feel wonderful 😄
+    - I am feeling very good 😊
+    - I am great 😃
+    - I'm good 😁
+    - I'm feeling awesome 😎
+    - I'm feeling happy 😊
+    - Today is an awesome day! 🌟
+    - I'm so glad 😄
+    - I'm just really happy right now 😊
 
 - intent: mood_sad
   examples: |
+    - 😒
+    - 🥲
+    - 😟
+    - ☹️
+    - 🥺
+    - 🥹
+    - 😥
+    - 😢
+    - 😭
+    - 😖
+    - 😞
+    - 😓
     - my day was horrible
     - I am sad
     - I don't feel very well
@@ -131,6 +191,74 @@ nlu:
     - I am as lonely as can be
     - I am going through a rather rough time
     - I'm grieving
+    - my day was horrible
+    - I am sad 😢
+    - I don't feel very well 😔
+    - I am disappointed 😞
+    - super sad 😢
+    - I'm so sad 😭
+    - sad 😔
+    - very sad 😞
+    - unhappy 😒
+    - not good ☹️
+    - not very good 😟
+    - extremely sad 😭
+    - so saad 😢
+    - so sad 😔
+    - I am sad 😢
+    - I don't feel very well 😔
+    - I am disappointed 😞
+    - my day was horrible 😖
+    - This is bad 😞
+    - I am sick 🤒
+    - I am ill 🤕
+    - I am all low today 😔
+    - It's disappointing 😞
+    - How irritating it is 😠
+    - Am irritated 😠
+    - I am not feeling well 🤒
+    - This sucks! 😫
+    - I am feeling too bad 😔
+    - Worst day ever! 😩
+    - This feels bad 😞
+    - I feel low 😢
+    - Everything is bad today 😖
+    - I feel very sad 😭
+    - Feels horrible 😣
+    - This is depressing 😞
+    - I am depressed 😔
+    - I feel bored 😒
+    - I am feeling bored 😒
+    - life is boring 😔
+    - I am feeling empty 😞
+    - I feel useless 😢
+    - awful 😖
+    - depressed 😔
+    - heavy 😞
+    - I am feeling quite lost 😟
+    - very sad 😞
+    - unhappy 😒
+    - bad 😣
+    - very bad 😞
+    - awful 😖
+    - terrible 😩
+    - not very good 😔
+    - extremely sad 😭
+    - so sad 😢
+    - I'm feeling down 😞
+    - I'm feeling sad 😔
+    - I'm feeling sad 😞
+    - I'm not okay 😢
+    - I'm feeling low 😔
+    - Not good 😒
+    - I'm awful 😩
+    - I'm feeling very sad 😭
+    - I'm uneasy 😣
+    - Actually I'm not fine 😔
+    - I'm not good 😟
+    - I am as lonely as can be 😢
+    - I am going through a rather rough time 😞
+    - I'm grieving 😭
 
 - intent: mood_angry
   examples: |
@@ -166,6 +294,45 @@ nlu:
     - That made me angry
     - U made me angry
     - I'm still angry about that
+    - 😒
+    - 🥹
+    - 😤
+    - 😡
+    - 😠
+    - 🤬
+    - 👿
+    - I am angry 😡
+    - I am feeling so angry 😠
+    - I am so annoyed 😤
+    - It's annoying 😒
+    - That's aggravating 😠
+    - I'm furious 😡
+    - That is infuriating 😠
+    - I'm very mad 😡
+    - Everything vexes me 😤
+    - I am outraged 😡
+    - That is outrageous! 😠
+    - I feel hostile 😠
+    - I am very frustrated 😤
+    - It is irritating me 😒
+    - I feel so offended 😡
+    - I am full of fury 😠
+    - I feel very belligerent 😤
+    - I hate doing this 😡
+    - I have no patience today 😠
+    - I could not control my anger 😡
+    - I'm annoyed 😤
+    - I'm super annoyed 😠
+    - I'm so mad 😡
+    - I'm enraged 😡
+    - I'm straight up angry 😠
+    - This is maddening! 😤
+    - I'm pissed off 😡
+    - I'm pissed 😠
+    - You bet I'm angry 😡
+    - That made me angry 😠
+    - You made me angry 😡
+    - I'm still angry about that 😠
 
 - intent: mood_calm
   examples: |
@@ -200,6 +367,37 @@ nlu:
     - I feel calm and composed
     - Feeling calm and relaxed
     - I feel very peaceful right now
+    - I am calm 😌
+    - I feel peaceful 🧘‍♀️
+    - I'm relaxed 😌
+    - Feeling serene 🧘‍♂️
+    - I am at peace 🕊️
+    - I'm composed 😌
+    - I'm unwound 😌
+    - I am tranquil 🌿
+    - I feel balanced ⚖️
+    - I'm in a state of calmness 😌
+    - Feeling quiet 🤫
+    - Very composed 😌
+    - Completely serene 🧘
+    - Totally relaxed 😌
+    - I am feeling very calm 😌
+    - I feel calm and collected 🧘‍♂️
+    - Feeling peaceful and calm 🧘‍♀️
+    - I'm unwinding 🌿
+    - It's soothing 😌
+    - I am feeling at ease 🧘
+    - I feel relaxed 😌
+    - I'm feeling very peaceful 🕊️
+    - I'm feeling serene 🧘‍♀️
+    - I'm feeling calm 😌
+    - I'm feeling composed 😌
+    - I'm feeling at peace 🕊️
+    - I'm feeling tranquil 🌿
+    - I'm feeling balanced ⚖️
+    - I feel calm and composed 😌
+    - Feeling calm and relaxed 😌
+    - I feel very peaceful right now 🧘
 
 - intent: Telugu_song
   examples: |
@@ -209,8 +407,10 @@ nlu:
 
 - intent: Telugu_song_sad
   examples: |
-    - Telugu sad
-    - Telugu sad song
+    - Telugu sad 😔
+    - Telugu sad 😔
+    - Telugu sad 😔
+    - Telugu sad 😔 song
     - Telugu sad songs
 
 - intent: Telugu_song_angry

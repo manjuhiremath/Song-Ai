@@ -49,73 +49,73 @@ slots:
 
 responses:
   utter_greet:
-    - text: "Hey! How are you?"
+    - text: "Hey👋! How are you?"
 
   utter_goodbye:
-    - text: "Bye"
+    - text: "Bye👋"
 
   utter_mood_happy:
-    - text: "I'm glad you're feeling happy! Please select your preferred language for the song."
+    - text: "I'm glad you're feeling happy 😊! Please select your preferred language for the song."
       buttons:
-        - title: Kannada
+        - title: Kannada 😊
           payload: '/Kannada_song'
-        - title: Telugu
+        - title: Telugu 😊
           payload: '/Telugu_song'
-        - title: Hindi
+        - title: Hindi 😊
           payload: '/Hindi_song'
-        - title: English
+        - title: English 😊
           payload: '/English_song'
-        - title: Tamil
+        - title: Tamil 😊
           payload: '/Tamil_song'
-        - title: Marathi
+        - title: Marathi 😊
           payload: '/Marathi_song'
 
   utter_mood_sad:
-    - text: "I'm sorry you're feeling sad. Please select your preferred language for the song."
+    - text: "I'm sorry you're feeling sad 😔. Please choose your preferred language for the song."
       buttons:
-        - title: Kannada
+        - title: Kannada Sad 😔
           payload: '/Kannada_song_sad'
-        - title: Telugu
+        - title: Telugu Sad 😔
           payload: '/Telugu_song_sad'
-        - title: Hindi
+        - title: Hindi Sad 😔
           payload: '/Hindi_song_sad'
-        - title: English
+        - title: English Sad 😔
           payload: '/English_song_sad'
-        - title: Tamil
+        - title: Tamil Sad 😔
           payload: '/Tamil_song_sad'
-        - title: Marathi
+        - title: Marathi Sad 😔
           payload: '/Marathi_song_sad'
 
   utter_mood_angry:
-    - text: "I'm sorry you're feeling angry. Please select your preferred language for the song."
+    - text: "I'm sorry you're feeling angry 😔.Please specify the language you prefer for the song."
       buttons:
-        - title: Kannada
+        - title: Kannada Angry 
           payload: '/Kannada_song_angry'
-        - title: Telugu
+        - title: Telugu Angry
           payload: '/Telugu_song_angry'
-        - title: Hindi
+        - title: Hindi Angry
           payload: '/Hindi_song_angry'
-        - title: English
+        - title: English Angry
           payload: '/English_song_angry'
-        - title: Tamil
+        - title: Tamil Angry
           payload: '/Tamil_song_angry'
-        - title: Marathi
+        - title: Marathi Angry
           payload: '/Marathi_song_angry'
 
   utter_mood_calm:
-    - text: "I'm glad you're feeling calm! Please select your preferred language to play the song."
+    - text: "I'm glad you're feeling calm 😌! Please choose your preferred language for the song."
       buttons:
-        - title: Kannada
+        - title: Kannada calm
           payload: '/Kannada_song_calm'
-        - title: Telugu
+        - title: Telugu calm
           payload: '/Telugu_song_calm'
-        - title: Hindi
+        - title: Hindi calm
           payload: '/Hindi_song_calm'
-        - title: English
+        - title: English calm
           payload: '/English_song_calm'
-        - title: Tamil
+        - title: Tamil calm
           payload: '/Tamil_song_calm'
-        - title: Marathi
+        - title: Marathi calm
           payload: '/Marathi_song_calm'
 
   utter_did_that_help:
@@ -131,6 +131,9 @@ responses:
 actions:
   - action_play_song
   - action_fetch_kannada_songs
+  - action_fetch_kannada_sad_songs
+  - action_fetch_kannada_angry_songs
+  - action_fetch_kannada_calm_songs
   - action_fetch_Hindi_songs
   - action_fetch_Telugu_songs
   - action_fetch_Marathi_songs

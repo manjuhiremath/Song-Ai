@@ -40,7 +40,7 @@ rules:
 - rule: song Kannada_song sad
   steps:
   - intent: Kannada_song_sad
-  - action: action_fetch_kannada_songs
+  - action: action_fetch_kannada_sad_songs
 
 - rule: song Telugu_song sad
   steps:
@@ -67,10 +67,10 @@ rules:
   - intent: English_song_sad
   - action: action_fetch_English_songs
 
-- rule: song Kannada_song sagry
+- rule: song Kannada_song angry
   steps:
   - intent: Kannada_song_angry
-  - action: action_fetch_kannada_songs
+  - action: action_fetch_kannada_angry_songs
 
 - rule: song Telugu_song angry
   steps:
@@ -100,7 +100,7 @@ rules:
 - rule: song Kannada_song calm
   steps:
   - intent: Kannada_song_calm
-  - action: action_fetch_kannada_songs
+  - action: action_fetch_kannada_calm_songs
 
 - rule: song Telugu_song calm
   steps:
